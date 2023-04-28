@@ -13,7 +13,8 @@
                 nz-tooltip
                 nzTooltipPlacement="right"
                 [nzTooltipTitle]="isCollapsed ? 'Invoices' : ''"
-                nzSelected
+                routerLink="/dashboard/invoice"
+                nzMatchRouter
             >
                 <span nz-icon nzType="dollar-circle"></span>
                 <span>Invoices</span>
@@ -21,14 +22,7 @@
         </ul>
     </nz-sider>
     <nz-layout>
-        <nz-header>
-            <div class="app-header">
-                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-                    <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
-                </span>
-                <span class="logout" nz-icon nzType="poweroff"></span>
-            </div>
-        </nz-header>
+        <app-header [(isCollapsed)]="isCollapsed"></app-header>
         <nz-content>
             <div class="inner-content">
                 <router-outlet></router-outlet>

@@ -16,18 +16,6 @@
   box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
 }
 
-.header-trigger {
-  padding: 0 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all .3s, padding 0s;
-}
-
-.trigger:hover,
-.logout:hover {
-  color: #1890ff;
-}
-
 .sidebar-logo {
   position: relative;
   height: 64px;
@@ -55,23 +43,6 @@
   vertical-align: middle;
 }
 
-nz-header {
-  padding: 0;
-  width: 100%;
-  z-index: 2;
-}
-
-.app-header {
-  position: relative;
-  height: 64px;
-  padding: 0;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 nz-content {
   margin: 24px;
 }
@@ -80,10 +51,4 @@ nz-content {
   padding: 24px;
   background: #fff;
   height: 100%;
-}
-
-.logout {
-  font-size: 20px;
-  padding: 10px 24px;
-  cursor: pointer;
 }

@@ -7,11 +7,13 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
