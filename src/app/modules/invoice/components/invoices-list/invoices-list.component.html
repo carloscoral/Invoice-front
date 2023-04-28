@@ -1,0 +1,22 @@
+<nz-table #invoicesTable [nzData]="invoices" [nzLoading]="invoicesStatus.isLoading">
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Total</th>
+            <th>IVA</th>
+            <th>Estado de pago</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of invoicesTable.data">
+            <td>{{ item.number }}</td>
+            <td>{{ item.total }}</td>
+            <td>{{ item.total_iva }}</td>
+            <td>
+                <span class="status" [ngClass]="{paid: item.paid}">{{ item.paid ? 'Pagada' : 'Pendiente' }}</span>
+            </td>
+            <td>Actions</td>
+        </tr>
+    </tbody>
+</nz-table>
