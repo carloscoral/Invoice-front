@@ -8,19 +8,18 @@ import { InvoiceService } from '../../service/invoice.service';
   styleUrls: ['./invoices-list.component.scss']
 })
 export class InvoicesListComponent implements OnInit {
-  invoices: Invoice[] = [];
 
   get invoicesStatus() {
     return this.invoiceService.getInvoicesStatus;
   }
 
+  get invoices(): Invoice[] {
+    return this.invoiceService.invoices;
+  }
+
   constructor(private invoiceService: InvoiceService) {}
 
   ngOnInit(): void {
-    this.loadInvoices(); 
-  }
-
-  async loadInvoices() {
-    this.invoices = await this.invoiceService.getInvoices();
+    this.invoiceService.getInvoices();
   }
 }
