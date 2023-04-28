@@ -7,6 +7,7 @@ import { InvoicesListComponent } from './components/invoices-list/invoices-list.
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { InvoiceService } from './service/invoice.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { InvoiceService } from './service/invoice.service';
   imports: [
     CommonModule,
     InvoiceRoutingModule,
-    NzTableModule
+    NzTableModule,
+    SharedModule
   ],
   providers: [
     InvoiceService
