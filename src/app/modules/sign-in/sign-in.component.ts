@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,28 +9,39 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  validateForm!: UntypedFormGroup;
+  signInForm: FormGroup = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required)
+  });
 
-  submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+  get signInStatus() {
+    return this.authService.signInStatus;
+  }
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
+  async submitForm() {
+    if (this.signInForm.valid) {
+      this.signInForm.disable();
+      try {
+        const credentials = this.signInForm.value;
+        const success = await this.authService.signIn(credentials);
+        if (success) {
+          await this.router.navigate(['/dashboard']);
+        }
+      } finally {
+        this.signInForm.enable();
+      }
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.signInForm.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
     }
-  }
-
-  constructor(private fb: UntypedFormBuilder) {}
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
-    });
   }
 }
