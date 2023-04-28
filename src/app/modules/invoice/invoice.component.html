@@ -1,2 +1,6 @@
-<h1>Invoices</h1>
-<app-invoices-list></app-invoices-list>
+<div class="page-header">
+    <button *ngIf="!isHome" class="back" nz-button nzShape="circle" (click)="goBack()"><span nz-icon nzType="left"></span></button>
+    <h1>Invoices</h1>
+    <button *ngIf="isHome" nz-button nzType="primary" nzShape="circle" (click)="createNewInvoice()"><span nz-icon nzType="plus"></span></button>
+</div>
+<router-outlet></router-outlet>

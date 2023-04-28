@@ -8,18 +8,24 @@ import { InvoicesListComponent } from './components/invoices-list/invoices-list.
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { InvoiceService } from './service/invoice.service';
 import { SharedModule } from '../shared/shared.module';
+import { NewInvoiceComponent } from './components/new-invoice/new-invoice.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { IconsProviderModule } from 'src/app/icons-provider.module';
 
 
 @NgModule({
   declarations: [
     InvoiceComponent,
-    InvoicesListComponent
+    InvoicesListComponent,
+    NewInvoiceComponent
   ],
   imports: [
     CommonModule,
     InvoiceRoutingModule,
     NzTableModule,
-    SharedModule
+    NzButtonModule,
+    SharedModule,
+    IconsProviderModule
   ],
   providers: [
     InvoiceService

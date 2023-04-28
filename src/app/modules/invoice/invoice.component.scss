@@ -1,0 +1,14 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+
+    h1 {
+        margin-bottom: 0;
+        margin-right: 16px;
+    }
+
+    .back {
+        margin-right: 16px;
+    }
+}
