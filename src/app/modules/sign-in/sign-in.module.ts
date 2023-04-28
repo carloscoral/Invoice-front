@@ -3,6 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { SignInRoutingModule } from './sign-in-routing.module';
 import { SignInComponent } from './sign-in.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 
 @NgModule({
@@ -11,7 +17,12 @@ import { SignInComponent } from './sign-in.component';
   ],
   imports: [
     CommonModule,
-    SignInRoutingModule
+    ReactiveFormsModule,
+    SignInRoutingModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzCardModule
   ]
 })
 export class SignInModule { }
