@@ -30,4 +30,8 @@ export class InvoicesListComponent implements OnInit {
   edit(id: string) {
     this.router.navigate(['/dashboard/invoice', id]);
   }
+
+  deleteInvoice(id: string) {
+    this.invoiceService.deleteInvoice(id);
+  }
 }

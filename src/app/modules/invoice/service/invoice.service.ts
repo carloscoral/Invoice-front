@@ -13,6 +13,7 @@ export class InvoiceService {
   createInvoiceStatus = RequestStatus.success();
   getInvoiceStatus = RequestStatus.success();
   updateInvoiceStatus = RequestStatus.success();
+  deleteInvoiceStatus = RequestStatus.success();
 
   constructor(private http: HttpClient) { }
 
@@ -60,6 +61,18 @@ export class InvoiceService {
       return result;
     } catch (e) {
       this.updateInvoiceStatus = RequestStatus.error('Ha ocurrido un error. Intenta nuevamente.')
+      throw e;
+    }
+  }
+
+  async deleteInvoice(id: string): Promise<void> {
+    try {
+      this.deleteInvoiceStatus = RequestStatus.loading();
+      await firstValueFrom(this.http.delete(`${ApiUrl.invoice}/${id}`));
+      this.invoices = this.invoices.filter(current => current.id !== id);
+      this.deleteInvoiceStatus = RequestStatus.success();
+    } catch (e) {
+      this.deleteInvoiceStatus = RequestStatus.error('Ha ocurrido un error. Intenta nuevamente.');
       throw e;
     }
   }
