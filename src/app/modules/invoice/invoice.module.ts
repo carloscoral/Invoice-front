@@ -11,21 +11,33 @@ import { SharedModule } from '../shared/shared.module';
 import { NewInvoiceComponent } from './components/new-invoice/new-invoice.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { IconsProviderModule } from 'src/app/icons-provider.module';
+import { InvoiceFormComponent } from './components/invoice-form/invoice-form.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     InvoiceComponent,
     InvoicesListComponent,
-    NewInvoiceComponent
+    NewInvoiceComponent,
+    InvoiceFormComponent
   ],
   imports: [
     CommonModule,
     InvoiceRoutingModule,
+    ReactiveFormsModule,
     NzTableModule,
     NzButtonModule,
+    NzFormModule,
+    NzInputModule,
+    NzGridModule,
     SharedModule,
-    IconsProviderModule
+    IconsProviderModule,
+    NzCheckboxModule
   ],
   providers: [
     InvoiceService

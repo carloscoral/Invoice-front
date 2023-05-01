@@ -1,3 +1,26 @@
 .ant-form-item-explain-error {
     font-size: 0.8rem;
 }
+
+.group {
+    border: 1px solid rgb(224, 224, 224);
+    padding: 16px 0;
+    position: relative;
+    margin-top: 16px;
+
+    &::before {
+        content: attr(data-group);
+        position: absolute;
+        padding: 0 5px;
+        top: 0;
+        left: 14px;
+        color: gray;
+        background-color: white;
+        transform: translateY(-50%);
+    }
+}
+
+.row {
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+}

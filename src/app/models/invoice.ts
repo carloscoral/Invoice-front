@@ -14,3 +14,16 @@ export interface Invoice {
   total_iva: number;
   items: InvoiceItem[];
 }
+
+export interface InvoiceItemInput {
+  baseValue: number;
+  iva: number;
+  description: number;
+  amount: number;
+}
+
+export interface InvoiceInput {
+  number: string;
+  paid: boolean;
+  items: InvoiceItemInput[];
+}
