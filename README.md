@@ -16,4 +16,4 @@ The project can be deployed in any server with docker. To start deployed project
 docker compose up -d
 ```
 
-Currently the project is deployed in oracle VPC, the host is http://158.101.113.97
+Currently the project is deployed in oracle VPC, the host is http://158.101.113.97. Usar username 'admin' y password 'admin' para ingresar.
