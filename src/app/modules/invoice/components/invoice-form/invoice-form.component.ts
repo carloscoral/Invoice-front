@@ -64,7 +64,7 @@ export class InvoiceFormComponent implements OnInit {
       if (this.invoice) {
         const data = this.getData();
         await this.invoiceService.updateInvoice(this.invoice.id, data);
-        window.location.reload();
+        this.router.navigate(['/dashboard/invoice']);
       }
     } catch (e) {
       this.error = 'Algo ha salido mal, intenta nuevamente.'
