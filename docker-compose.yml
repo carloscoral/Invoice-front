@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  billing-front:
+    build:
+      context: ./
+    container_name: billing-front
+    ports:
+      - "80:80"
+    
