@@ -17,6 +17,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditInvoiceComponent } from './components/edit-invoice/edit-invoice.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     InvoiceComponent,
     InvoicesListComponent,
     NewInvoiceComponent,
-    InvoiceFormComponent
+    InvoiceFormComponent,
+    EditInvoiceComponent
   ],
   imports: [
     CommonModule,

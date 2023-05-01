@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from 'src/app/models/invoice';
 import { InvoiceService } from '../../service/invoice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoices-list',
@@ -17,9 +18,16 @@ export class InvoicesListComponent implements OnInit {
     return this.invoiceService.invoices;
   }
 
-  constructor(private invoiceService: InvoiceService) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.invoiceService.getInvoices();
+  }
+
+  edit(id: string) {
+    this.router.navigate(['/dashboard/invoice', id]);
   }
 }

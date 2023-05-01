@@ -16,7 +16,11 @@
             <td>
                 <span class="status" [ngClass]="{paid: item.paid}">{{ item.paid ? 'Pagada' : 'Pendiente' }}</span>
             </td>
-            <td>Actions</td>
+            <td>
+                <button nz-button nzType="primary" (click)="edit(item.id)">
+                    <span nz-icon nzType="edit" nzTheme="outline"></span>
+                </button>
+            </td>
         </tr>
     </tbody>
 </nz-table>

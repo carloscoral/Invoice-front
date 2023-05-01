@@ -11,6 +11,8 @@ export class InvoiceService {
   invoices: Invoice[] = [];
   getInvoicesStatus = RequestStatus.success();
   createInvoiceStatus = RequestStatus.success();
+  getInvoiceStatus = RequestStatus.success();
+  updateInvoiceStatus = RequestStatus.success();
 
   constructor(private http: HttpClient) { }
 
@@ -29,10 +31,35 @@ export class InvoiceService {
   async createInvoice(data: InvoiceInput): Promise<Invoice> {
     try {
       this.createInvoiceStatus = RequestStatus.loading();
-      return await firstValueFrom(this.http.post<Invoice>(ApiUrl.invoice, data));
+      const result = await firstValueFrom(this.http.post<Invoice>(ApiUrl.invoice, data));
       this.createInvoiceStatus = RequestStatus.success();
+      return result;
     } catch (e) {
       this.createInvoiceStatus = RequestStatus.error('Ha ocurrido un error. Intenta nuevamente');
+      throw e;
+    }
+  }
+
+  async getInvoice(id: string): Promise<Invoice> {
+    try {
+      this.getInvoiceStatus = RequestStatus.loading();
+      const result = await firstValueFrom(this.http.get<Invoice>(`${ApiUrl.invoice}/${id}`));
+      this.getInvoiceStatus = RequestStatus.success();
+      return result;
+    } catch (e) {
+      this.getInvoiceStatus = RequestStatus.error('Ha ocurrido un error. Intenta nuevamente');
+      throw e;
+    }
+  }
+
+  async updateInvoice(id: string, data: InvoiceInput): Promise<Invoice> {
+    try {
+      this.updateInvoiceStatus = RequestStatus.loading();
+      const result = await firstValueFrom(this.http.put<Invoice>(`${ApiUrl.invoice}/${id}`, data));
+      this.updateInvoiceStatus = RequestStatus.success();
+      return result;
+    } catch (e) {
+      this.updateInvoiceStatus = RequestStatus.error('Ha ocurrido un error. Intenta nuevamente.')
       throw e;
     }
   }

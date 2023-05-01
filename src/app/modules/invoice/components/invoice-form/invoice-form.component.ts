@@ -29,6 +29,19 @@ export class InvoiceFormComponent implements OnInit {
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    if (this.invoice) {
+      this.form = new FormGroup({
+        number: new FormControl(this.invoice?.number || '', Validators.required),
+        paid: new FormControl(this.invoice?.paid || false),
+        items: new FormArray<any>([])
+      });
+      this.invoice.items.forEach(item => {
+        this.addItem(item);
+      });
+    }
+  }
+
   submit() {
     this.error = '';
     if (this.form.valid) {
@@ -46,9 +59,13 @@ export class InvoiceFormComponent implements OnInit {
     }
   }
 
-  updateInvoice() {
+  async updateInvoice() {
     try {
-
+      if (this.invoice) {
+        const data = this.getData();
+        await this.invoiceService.updateInvoice(this.invoice.id, data);
+        window.location.reload();
+      }
     } catch (e) {
       this.error = 'Algo ha salido mal, intenta nuevamente.'
     }
@@ -56,19 +73,7 @@ export class InvoiceFormComponent implements OnInit {
 
   async createInvoice() {
     try {
-      const data: InvoiceInput = {
-        number: this.form.controls.number.value || '',
-        paid: this.form.controls.paid.value || false,
-        items: this.items.controls.map(item => {
-          const value = item.value;
-          return {
-            amount: value.amount,
-            description: value.description,
-            iva: value.iva,
-            baseValue: value.included_iva ? this.getBaseValue(value.baseValue, value.iva) : value.baseValue
-          }
-        })
-      };
+      const data = this.getData();
       await this.invoiceService.createInvoice(data);
       this.router.navigate(['/dashboard/invoice']);
     } catch (e) {
@@ -76,21 +81,24 @@ export class InvoiceFormComponent implements OnInit {
     }
   }
 
-  getBaseValue(value: number, iva: number): number {
-    return value / ( 1 + iva );
+  getData(): InvoiceInput {
+    return {
+      number: this.form.controls.number.value || '',
+      paid: this.form.controls.paid.value || false,
+      items: this.items.controls.map(item => {
+        const value = item.value;
+        return {
+          amount: value.amount,
+          description: value.description,
+          iva: value.iva,
+          baseValue: value.included_iva ? this.getBaseValue(value.baseValue, value.iva) : value.baseValue
+        }
+      })
+    };
   }
 
-  ngOnInit(): void {
-    if (this.invoice) {
-      this.form = new FormGroup({
-        number: new FormControl('', Validators.required),
-        paid: new FormControl(false),
-        items: new FormArray<any>([])
-      });
-      this.invoice.items.forEach(item => {
-        this.addItem(item);
-      });
-    }
+  getBaseValue(value: number, iva: number): number {
+    return Math.round((value / ( 1 + iva )) * 100) / 100;
   }
 
   addItem(data?: InvoiceItem) {
